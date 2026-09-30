@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS — Guatemala</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --envia-blue: #003366;
+      --envia-light-blue: #0099ff;
+      --envia-cyan: #00c3ff;
+      --envia-purple: #8a2be2;
+      --envia-green: #00c853;
+      --envia-red: #ff3333;
+      
+      --bg-gray: #f4f6f9;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; }
+
+    header {
+      background: linear-gradient(135deg, var(--envia-blue) 0%, #001a33 100%);
+      color: #ffffff;
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 51, 102, 0.15);
+      border-bottom: 4px solid var(--envia-cyan);
+    }
+    .header-title-container { display: flex; align-items: center; gap: 16px; }
+    
+    .envia-logo-icon { display: flex; align-items: flex-end; gap: 3px; height: 32px; background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 8px; }
+    .bar { width: 6px; border-radius: 3px; }
+    .bar-1 { height: 40%; background-color: var(--envia-purple); }
+    .bar-2 { height: 60%; background-color: var(--envia-light-blue); }
+    .bar-3 { height: 80%; background-color: var(--envia-green); }
+    .bar-4 { height: 100%; background-color: var(--envia-red); }
+
+    header h1 { font-size: 1.6rem; color: #ffffff; font-weight: 800; letter-spacing: -0.02em; }
+    header p { font-size: 0.85rem; color: #94a3b8; font-weight: 500; }
+
+    .container { max-width: 1440px; margin: 25px auto; padding: 0 25px; }
+
+    .controls {
+      background: var(--card-bg);
+      padding: 22px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--envia-blue); letter-spacing: 0.05em; }
+    .form-group input, .form-group select {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #f8fafc;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--envia-light-blue);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.15);
+    }
+
+    .input-with-btn {
+      display: flex;
+      gap: 8px;
+    }
+    .input-with-btn input {
+      flex: 1;
+    }
+
+    .reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 16px;
+      background-color: #f1f5f9;
+      color: var(--envia-blue);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .reset-btn:hover {
+      background-color: #e2e8f0;
+      color: var(--envia-red);
+      border-color: #cbd5e1;
+    }
+    .reset-btn:active {
+      transform: scale(0.97);
+    }
+
+    .dashboard { display: grid; grid-template-columns: 380px 1fr; gap: 25px; }
+
+    .process-list {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .process-list-header {
+      padding: 16px 20px;
+      background: #f1f5f9;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--envia-blue);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .count-badge { background: var(--envia-blue); color: white; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; }
+
+    .process-items { overflow-y: auto; flex: 1; }
+    .process-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .process-item:hover { background-color: #f0f9ff; }
+    .process-item.active {
+      background-color: #e0f2fe;
+      border-left: 5px solid var(--envia-light-blue);
+      font-weight: 600;
+    }
+    .process-item .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #e2e8f0;
+      color: var(--envia-blue);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+    .process-item.active .tag { background: var(--envia-blue); color: white; }
+    .process-item .title { font-size: 0.92rem; color: var(--text-main); font-weight: 600; line-height: 1.3; }
+
+    .content-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 35px;
+      min-height: 550px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .content-header { border-bottom: 2px solid var(--bg-gray); padding-bottom: 18px; margin-bottom: 25px; }
+    .content-header h2 { font-size: 1.6rem; color: var(--envia-blue); font-weight: 800; margin-bottom: 8px; }
+    .content-header .category-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--envia-blue), var(--envia-light-blue));
+      color: white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 30px; }
+    .info-box {
+      background: #f8fafc;
+      padding: 16px 18px;
+      border-radius: 10px;
+      border-left: 4px solid var(--envia-light-blue);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .info-box.alert { border-left-color: #f59e0b; }
+    .info-box.danger { border-left-color: var(--envia-red); }
+    
+    .info-box .label { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .info-box .value { font-size: 0.95rem; font-weight: 700; color: var(--envia-blue); margin-top: 4px; line-height: 1.3; }
+
+    .section-title { font-size: 1.1rem; font-weight: 800; margin: 25px 0 12px 0; color: var(--envia-blue); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    
+    .detail-body p, .detail-body ul, .detail-body ol { margin-bottom: 14px; font-size: 0.95rem; color: #334155; }
+    .detail-body ul, .detail-body ol { padding-left: 22px; }
+    .detail-body li { margin-bottom: 8px; }
+    .detail-body b { color: var(--envia-blue); }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0099ff;
+      color: #ffffff !important;
+      padding: 7px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin-top: 6px;
+      transition: all 0.2s ease;
+    }
+    .link-btn:hover { background: var(--envia-blue); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    table.data-table th, table.data-table td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: left;
+    }
+    table.data-table th { background: var(--envia-blue); color: white; font-weight: 700; }
+    table.data-table tr:nth-child(even) { background-color: #f8fafc; }
+
+    .empty-state { text-align: center; padding: 80px 20px; color: var(--text-muted); }
+
+    @media (max-width: 1024px) {
+      .controls { grid-template-columns: 1fr; }
+      .dashboard { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title-container">
+      <div class="envia-logo-icon">
+        <div class="bar bar-1"></div>
+        <div class="bar bar-2"></div>
+        <div class="bar bar-3"></div>
+        <div class="bar bar-4"></div>
+      </div>
+      <div>
+        <h1>CS — Guatemala</h1>
+        <p>Base Oficial de Conocimiento & Procesos Operativos Integrales — Envia.com</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="controls">
+      <div class="form-group">
+        <label>Buscar Proceso o Palabra Clave</label>
+        <div class="input-with-btn">
+          <input type="text" id="searchInput" placeholder="Ej: reclamo, sobrepeso, retiros, dirección, Case Flow...">
+          <button type="button" id="resetBtn" class="reset-btn" title="Limpiar filtros">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            Limpiar
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Categoría / Transportadora</label>
+        <select id="categoryFilter">
+          <option value="ALL">Todas las Categorías</option>
+          <option value="General / Financiero">General / Financiero</option>
+          <option value="Cargo Expreso">Cargo Expreso</option>
+          <option value="Forza">Forza</option>
+          <option value="Telomando">Telomando</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tipo de Proceso</label>
+        <select id="typeFilter">
+          <option value="ALL">Todos los Tipos</option>
+          <option value="Ficha Técnica / Condiciones">Ficha Técnica / Condiciones</option>
+          <option value="Recolecciones">Recolecciones</option>
+          <option value="Consultas / Retrasos">Consultas / Retrasos</option>
+          <option value="Novedades / Cambios">Novedades / Cambios</option>
+          <option value="Reclamaciones / PQR">Reclamaciones / PQR</option>
+          <option value="Financiero / COD / Saldo">Financiero / COD / Saldo</option>
+          <option value="Cierre Logístico">Cierre Logístico</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="process-list">
+        <div class="process-list-header">
+          <span>Procesos Disponibles</span>
+          <span class="count-badge" id="countDisplay">0</span>
+        </div>
+        <div class="process-items" id="processList"></div>
+      </div>
+
+      <div class="content-card" id="contentCard">
+        <div class="empty-state">
+          <h3>Selecciona un proceso del menú lateral</h3>
+          <p>O utiliza el buscador para filtrar procesos específicos por palabra clave.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const database = [
+      {
+        id: "cod_01",
+        category: "General / Financiero",
+        type: "Financiero / COD / Saldo",
+        title: "Proceso de Atención: Recaudo Contra Entrega (COD)",
+        whenToUse: "Aplica cuando el cliente contacta a soporte por consultas sobre un recaudo contra entrega, estado de un pago COD, inconvenientes/dudas del pago o consulta sobre el retiro de fondos recaudados.",
+        requiredInfo: "Número de guía (Obligatorio e indispensable para realizar la validación).",
+        channel: "Admon / Team GT con Tatiana Espinosa / Ecart Pay (Escalación adicional de inconsistencias con Hanna Delgado)",
+        sla: "Retiros: Martes y Viernes (Solicitud realizada antes de las 9:00 a.m.).",
+        details: `
+          <p><b>Información General:</b> Los pagos correspondientes a las guías con recaudo contra entrega (COD) son gestionados mediante Ecart Pay. La guía debe ser entregada al destinatario. Una vez entregada y procesado el pago, el valor se refleja en Ecart Pay. El cliente puede gestionar el retiro desde Ecart Pay hacia su cuenta bancaria. Retiros habituales: martes y viernes (solicitud antes de las 9:00 a.m.). Clientes con modalidad de pago diario requieren validación previa de su condición con el ID en Team GT.</p>
+          <div class="section-title">Paso a Paso de Atención</div>
+          <ol>
+            <li><b>Paso 1. Solicitar el número de guía:</b> Obligatorio para validar el estado del envío.</li>
+            <li><b>Paso 2. Validar el estado de la guía:</b>
+              <ul>
+                <li><b>Si la guía está ENTREGADA:</b> Realizar segunda validación en <i>Admon → Guías con recaudo contra entrega</i>.
+                  <ul>
+                    <li><b>Con número de transacción:</b> Significa que el pago del recaudo ya fue procesado. Informar al cliente que el recaudo fue procesado, que ingrese a Ecart Pay para gestionar el retiro e informar condiciones (Martes/Viernes antes de las 9:00 a.m. o validar pago diario por ID en Team GT). Compartir manual de retiro: <a href="https://help.envia.com/retirar-dinero-cod/" target="_blank" class="link-btn">Manual Retirar Dinero COD</a></li>
+                    <li><b>Sin número de transacción:</b> Solicitar la validación del estado del pago en Team GT con Tatiana Espinosa (ella confirma si el pago fue realizado y comparte comprobante). Si se confirma que no se ha procesado, solicitar el procesamiento del pago mediante Team GT con Tatiana Espinosa.</li>
+                  </ul>
+                </li>
+                <li><b>Si la guía NO está entregada:</b> Primero gestionar la actualización de estado antes de la validación del recaudo. Generar ticket por el formulario <i>Soporte Carriers Guatemala 1 - en Team GT</i> solicitando actualización. <b>Importante:</b> No gestionar el pago del recaudo como si estuviera entregada mientras no se haya actualizado.</li>
+              </ul>
+            </li>
+            <li><b>Validación de un pago:</b> Solicitar en Team GT con Tatiana Espinosa para confirmar pago, validar estado o solicitar/compartir comprobantes. Útil cuando la guía está entregada sin transacción, el cliente no visualiza fondos o hay inconsistencia. Ante inconsistencias adicionales, escalar con Hanna Delgado.</li>
+          </ol>
+          <div class="section-title">Matriz de Decisión COD</div>
+          <table class="data-table">
+            <tr><th>Situación</th><th>Acción</th></tr>
+            <tr><td>Cliente consulta por un recaudo</td><td>Solicitar número de guía.</td></tr>
+            <tr><td>Guía no entregada</td><td>Solicitar actualización mediante Formulario Soporte Carriers Guatemala 1 - en Team GT.</td></tr>
+            <tr><td>Guía entregada + tiene número de transacción</td><td>Informar que el pago fue procesado y orientar sobre retiro en Ecart Pay. Manual: https://help.envia.com/retirar-dinero-cod/</td></tr>
+            <tr><td>Guía entregada + no tiene número de transacción</td><td>Solicitar validación del pago en Team GT con Tatiana Espinosa.</td></tr>
+            <tr><td>Se confirma que el pago no ha sido realizado</td><td>Reportar en Team GT con Tatiana Espinosa para solicitar el procesamiento.</td></tr>
+            <tr><td>Cliente pregunta si ya se realizó el pago</td><td>Solicitar validación en Team GT con Tatiana Espinosa.</td></tr>
+            <tr><td>Cliente solicita comprobante</td><td>Solicitar validación a Tatiana Espinosa para confirmar y compartir comprobante.</td></tr>
+            <tr><td>Cliente tiene modalidad de pago diario</td><td>Verificar la modalidad mediante el ID del cliente en Team GT.</td></tr>
+          </table>
+          <div class="section-title">Consideraciones Importantes</div>
+          <ul>
+            <li>El número de guía es obligatorio para iniciar la gestión.</li>
+            <li>Antes de informar al cliente que un recaudo fue pagado, se debe validar la información disponible.</li>
+            <li>No se debe comunicar al cliente una confirmación de pago sin haber realizado previamente la validación correspondiente.</li>
+          </ul>
+        `
+      },
+      {
+        id: "rec_01",
+        category: "General / Financiero",
+        type: "Financiero / COD / Saldo",
+        title: "Proceso de Atención: Recargas de Saldo",
+        whenToUse: "Aplica cuando el cliente desea realizar una recarga de saldo, ya realizó una recarga pero el saldo no se refleja, consulta sobre el tiempo de acreditación o solicita prioridad.",
+        requiredInfo: "Comprobante de pago (obligatorio cuando la recarga aún no aparece acreditada).",
+        channel: "Admon / Canal de Slack: #support-accounting-and-finance (etiquetar a Osiel Orlando del Angel)",
+        sla: "Referencia habitual de acreditación: 30 a 60 minutos (o inmediato según método).",
+        details: `
+          <div class="section-title">1. Validación Inicial Obligatoria</div>
+          <p>Antes de generar cualquier ticket o reporte interno, realizar validación obligatoria en Admon:</p>
+          <p>Ruta: <b>Admon → Cuenta del cliente → Estado de cuenta</b></p>
+          <ul>
+            <li><b>Si la recarga YA aparece acreditada:</b> NO generar ticket ni reporte interno. Confirmar al cliente que la recarga fue aplicada y que el saldo está disponible.</li>
+            <li><b>Si la recarga NO aparece reflejada:</b> Continuar con el proceso de gestión.</li>
+          </ul>
+          <div class="section-title">2. Métodos de Pago y Gestión de No Acreditada</div>
+          <p>Métodos disponibles: Tarjeta de crédito/débito o transferencia bancaria.</p>
+          <p>Si la recarga no aparece reflejada en Admon:</p>
+          <ol>
+            <li>Solicitar al cliente el comprobante de pago.</li>
+            <li>Generar ticket por <b>Pago pendiente</b>.</li>
+            <li>Adjuntar el comprobante de pago en el ticket.</li>
+          </ol>
+          <div class="section-title">3. Tiempos de Acreditación, Retrasos y Prioridades</div>
+          <p><b>Tiempo de referencia:</b> 30 a 60 minutos (en algunos casos es inmediato). Si el cliente acaba de recargar y está en el rango habitual, informar el tiempo estimado y esperar actualización.</p>
+          <p><b>Recarga retrasada o solicitud de prioridad:</b> Si transcurrió el tiempo esperado o se requiere prioridad, realizar reporte interno en el canal de Slack <b>#support-accounting-and-finance</b> etiquetando a <b>Osiel Orlando del Angel</b> con el ticket para revisión y carga de saldo.</p>
+          <div class="section-title">Matriz de Decisión Recargas</div>
+          <table class="data-table">
+            <tr><th>Situación</th><th>Acción</th></tr>
+            <tr><td>Cliente consulta por una recarga</td><td>Validar primero en Admon → Cuenta del cliente → Estado de cuenta.</td></tr>
+            <tr><td>Recarga ya aparece en Admon</td><td>Confirmar al cliente que el saldo está disponible. No generar ticket ni reporte interno.</td></tr>
+            <tr><td>Recarga no aparece en Admon</td><td>Continuar con la gestión de pago no acreditado.</td></tr>
+            <tr><td>Cliente realizó el pago y no refleja</td><td>Solicitar comprobante de pago, generar ticket "Pago pendiente" y adjuntar comprobante.</td></tr>
+            <tr><td>Recarga dentro del tiempo esperado</td><td>Informar el tiempo estimado de acreditación (30-60 min) y esperar actualización.</td></tr>
+            <tr><td>Recarga no aparece tras tiempo establecido / Requiere prioridad</td><td>Reportar en Slack #support-accounting-and-finance etiquetando a Osiel Orlando del Angel.</td></tr>
+          </table>
+        `
+      },
+      {
+        id: "cx_01",
+        category: "Cargo Expreso",
+        type: "Ficha Técnica / Condiciones",
+        title: "Cargo Expreso: Ficha Técnica y Condiciones de Servicio",
+        whenToUse: "Consulta de límites técnicos, peso, embalajes, coberturas, seguros, declarados y restricciones de Cargo Expreso.",
+        requiredInfo: "Número de guía o consulta técnica del cliente.",
+        channel: "Slack #teamGT / WhatsApp: Seguimientos Cargo Expreso & Envia.com / https://help.envia.com/",
+        sla: "Consultas operativas inmediatas.",
+        details: `
+          <div class="section-title">Ficha Técnica de Despacho</div>
+          <ul>
+            <li><b>Factor volumétrico:</b> 2272</li>
+            <li><b>Peso máximo y dimensiones por paquete:</b> 50 libras.</li>
+            <li><b>Peso máximo por guía/envío:</b> 200 libras.</li>
+            <li><b>Embalaje aceptado:</b> Bolsas de seguridad y cajas (según guía de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Ver Guía de Embalaje</a>).</li>
+            <li><b>Horarios de corte de guías:</b> No hay horario de corte para generar la guía.</li>
+          </ul>
+          <div class="section-title">Condiciones de Entrega, Recaudo y Políticas</div>
+          <ul>
+            <li><b>Intentos de entrega:</b> 3 intentos permitidos. Al no lograrse, inicia devolución.</li>
+            <li><b>Política de devoluciones:</b> La devolución <b>SÍ tiene costo</b>, equivalente al flete de regreso.</li>
+            <li><b>Servicio COD (Pago Contra Entrega):</b> Sí cuenta con servicio. Mínimo a recaudar: Q1.00 | Máximo a recaudar: Q20K (Q20,000). Comisión COD: 4.5% o el mínimo de Q1.00. El pago se acredita directamente a la cuenta Ecartpay asociada al entregar. Si no se evidencia, contactar al WhatsApp <a href="https://wa.me/50243887119" target="_blank" class="link-btn">WhatsApp +50243887119</a> o crear ticket por plataforma por pago retrasado.</li>
+            <li><b>Seguros y Declarados:</b> Seguro mínimo gratuito cubre hasta Q800. Límite declarado: Q24,000.</li>
+            <li><b>Matriz de Cobertura:</b> Disponible en Slack #teamGT (pestaña "cobertura") o en <a href="https://docs.google.com/spreadsheets/d/1Jsux-EUM1tI_4BI5PX3kWsSenKGU95KA/edit?usp=sharing&ouid=115683125028882515316&rtpof=true&sd=true" target="_blank" class="link-btn">Ver Matriz Cobertura Excel</a>.</li>
+            <li><b>Mercancías prohibidas:</b> <a href="https://help.envia.com/articulos-prohibidos-y-restringidos/" target="_blank" class="link-btn">Ver Artículos Prohibidos</a></li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_recol",
+        category: "Cargo Expreso",
+        type: "Recolecciones",
+        title: "Cargo Expreso: Programación de Recolecciones (Fija y Esporádica)",
+        whenToUse: "Solicitud o programación de recolecciones fijas o esporádicas para paquetes con Cargo Expreso.",
+        requiredInfo: "Fija: Dirección origen, nombre/teléfono despachador, cantidad de paquetes, descripción. Esporádica: Número de guía, dirección origen, datos despachador, cantidad y descripción.",
+        channel: "WhatsApp Cargo Expreso",
+        sla: "Fija: asignación en 24 horas. Esporádica: corte 11:00 am para mismo día.",
+        details: `
+          <div class="section-title">Recolección Fija — Cargo Expreso</div>
+          <ul>
+            <li><b>Mínimo de paquetes diarios:</b> 10 paquetes.</li>
+            <li><b>Días y horarios:</b> Lunes a viernes de 8:00 am a 6:00 pm; Sábados hasta las 12:00 pm.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp.</li>
+            <li><b>Requisitos:</b> Dirección de origen, Nombre y número de teléfono de la persona que despacha, Cantidad de paquetes, Descripción de los productos a enviar.</li>
+            <li><b>Tiempo en ser asignada:</b> 24 horas.</li>
+          </ul>
+          <div class="section-title">Recolección Esporádica — Cargo Expreso</div>
+          <ul>
+            <li><b>Mínimo de paquetes:</b> 5 paquetes.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp.</li>
+            <li><b>Requisitos:</b> Número de guía, Dirección de origen, Nombre y número de teléfono del despachador, Cantidad de paquetes, Descripción de productos.</li>
+            <li><b>Horario de corte:</b> Solicitar máximo el mismo día antes de las 11:00 am para que pasen el mismo día; de lo contrario, queda asignada para el siguiente día hábil.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_02",
+        category: "Cargo Expreso",
+        type: "Consultas / Retrasos",
+        title: "Cargo Expreso: Consulta por Despacho Sin Movimiento",
+        whenToUse: "Aplica cuando el cliente ya despachó un envío, pero Cargo Expreso no lo ha ingresado en su sistema o no presenta movimiento después de 24 horas desde el despacho.",
+        requiredInfo: "Obligatorio: Número de guía, Fecha de despacho. Adicional: Fotos del paquete y contenido interno, Comprobante de despacho.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Validaciones Iniciales Obligatorias</div>
+          <ol>
+            <li>Identificar el número de guía.</li>
+            <li>Consultar el estado y trazabilidad del envío en sistema.</li>
+            <li>Revisar el último movimiento registrado.</li>
+            <li>Solicitar al cliente la fecha de despacho y evidencia/comprobante del despacho si cuenta con ella.</li>
+          </ol>
+          <div class="section-title">Gestión según Canal de Atención</div>
+          <ul>
+            <li><b>Por Respond.io / WhatsApp:</b> Revisar novedad/trazabilidad → Generar ticket por <b>Envío sin movimiento</b> con toda la info → Solicitar gestión al grupo de WhatsApp <i>Seguimientos Cargo Expreso & Envia.com</i> → Informar al cliente número de ticket y tiempo estimado (1 a 3 días hábiles, sin prometer como fecha garantizada).</li>
+            <li><b>Por Ticket:</b> Consultar trazabilidad. Si falta info, solicitarla por el ticket y cambiar a <b>Incomplete</b>. Cuando esté completa, gestionar vía WhatsApp, notificar al cliente el tiempo estimado (1-3 días hábiles) y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_03",
+        category: "Cargo Expreso",
+        type: "Consultas / Retrasos",
+        title: "Cargo Expreso: Consulta por Envío Retrasado",
+        whenToUse: "Aplica cuando el cliente manifiesta tener un envío retrasado y se excedió el tiempo de promesa de entrega.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono del destinatario, Dirección de entrega.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Regla Específica de Envío Retrasado</div>
+          <p>Se considera envío retrasado cuando: <b>El último movimiento fue hace más de 2 días hábiles</b> OR <b>Han transcurrido 5 días desde el despacho y el envío no ha sido entregado</b>.</p>
+          <div class="section-title">Flujo de Atención</div>
+          <ol>
+            <li>Identificar número de guía y revisar trazabilidad para detectar causas de detención.</li>
+            <li>Solicitar únicamente información no disponible en conversación/ticket.</li>
+            <li><b>Gestionar por Respond.io / WhatsApp:</b> Generar ticket por <b>Paquete retrasado</b> → Solicitar prioridad al grupo de WhatsApp <i>Seguimientos Cargo Expreso & Envia.com</i> → Informar ticket y tiempo estimado (1 a 3 días hábiles).</li>
+            <li><b>Gestionar por Ticket:</b> Verificar info. Si está incompleta cambiar a <b>Incomplete</b>. Al completarse, solicitar prioridad vía WhatsApp, notificar al cliente y pasar ticket a <b>In review</b>.</li>
+          </ol>
+        `
+      },
+      {
+        id: "cx_04",
+        category: "Cargo Expreso",
+        type: "Novedades / Cambios",
+        title: "Cargo Expreso: Solicitud de Redireccionamiento (Nueva Dirección)",
+        whenToUse: "Aplica cuando el cliente solicita realizar la entrega en una nueva dirección.",
+        requiredInfo: "Obligatorio: Número de guía, Nueva dirección (nomenclatura, complemento, ciudad). Adicional: Datos del destinatario (teléfono, nombre).",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Reglas y Validaciones</div>
+          <ul>
+            <li><b>Número máximo de intentos permitidos:</b> 3 intentos.</li>
+            <li>Validar en trazabilidad cuántos intentos se han realizado y si el envío aún puede recibir intento.</li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> → Solicitar gestión al grupo de WhatsApp <i>Seguimientos Cargo Expreso & Envia.com</i> → Informar ticket y SLA de 1 a 3 días hábiles.</li>
+            <li><b>Ticket:</b> Confirmar datos. Si falta info pasar a <b>Incomplete</b>. Con info completa, solicitar redirección por WhatsApp, notificar al cliente y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_05",
+        category: "Cargo Expreso",
+        type: "Novedades / Cambios",
+        title: "Cargo Expreso: Solicitud de Nuevo Intento de Entrega",
+        whenToUse: "Aplica cuando el cliente solicita un nuevo intento de entrega de un envío que no pudo ser entregado durante un intento anterior.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono, Dirección de entrega.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Reglas y Validaciones</div>
+          <ul>
+            <li><b>Número máximo de intentos:</b> 3 intentos permitidos.</li>
+            <li>Revisar motivo de fallo anterior y verificar si aún permite reintento.</li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Generar ticket por <b>Intento de entrega</b> o <b>Paquete retrasado</b> → Solicitar gestión en grupo de WhatsApp → Informar ticket y SLA de 1 a 3 días hábiles.</li>
+            <li><b>Ticket:</b> Validar datos. Si falta info pasar a <b>Incomplete</b>. Con info completa, gestionar por WhatsApp, notificar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_06",
+        category: "Cargo Expreso",
+        type: "Novedades / Cambios",
+        title: "Cargo Expreso: Solicitud de Retorno a Origen",
+        whenToUse: "Aplica cuando el cliente solicita devolver su paquete al origen.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Datos del remitente (dirección, número de contacto).",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "2 a 5 días hábiles.",
+        details: `
+          <div class="section-title">Reglas y Validaciones</div>
+          <ul>
+            <li><b>Condición:</b> No aplica para una guía que figura como entregada.</li>
+            <li><b>Costo:</b> La devolución SÍ tiene costo, equivalente al flete de regreso.</li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> (registrando datos para devolución a origen) → Solicitar gestión por el grupo de WhatsApp → Informar ticket y tiempo estimado (2 a 5 días hábiles).</li>
+            <li><b>Ticket:</b> Confirmar datos de entrega en origen. Si falta info pasar a <b>Incomplete</b>. Con info completa, solicitar devolución vía WhatsApp, notificar al cliente y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_07",
+        category: "Cargo Expreso",
+        type: "Reclamaciones / PQR",
+        title: "Cargo Expreso: Reclamación por Entrega Incorrecta (Wrong Delivery)",
+        whenToUse: "Aplica cuando el envío figura como entregado en destino u origen, pero el destinatario no reconoce la entrega y manifiesta no haberlo recibido.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, Evidencia donde el destinatario manifieste que no recibió (capturas, audios), Carta de reclamo.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "Plazo máximo para iniciar reclamo: 48 horas desde la entrega. Tiempo de gestión: 7 a 15 días hábiles.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1LOgmrJvcd41NQ5g9feL0fy4ZBdfzq7vZsHsx96ZeHQg/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Cargo Expreso</a></p>
+          <div class="section-title">Flujo de Atención por Canales</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Verificar fecha de entrega (máx 48h) → Solicitar evidencias y carta → Generar ticket por <b>Entrega incorrecta</b> → Solicitar gestión en grupo de WhatsApp → Informar ticket y SLA de 7 a 15 días hábiles.</li>
+            <li><b>Ticket:</b> Verificar plazo. Si falta info/evidencia, pasar a <b>Incomplete</b>. Con documentación completa, escalar vía WhatsApp, notificar tiempo estimado y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_08",
+        category: "Cargo Expreso",
+        type: "Reclamaciones / PQR",
+        title: "Cargo Expreso: Reclamación por Paquete Perdido",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un paquete presuntamente perdido, que no se ha entregado ni en destino ni en origen.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno (referencia para tratar de ubicarlo), Carta de reclamo.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "Plazo límite para reclamar: 48 horas. Tiempo de revisión/gestión: 7 a 15 días hábiles.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1LOgmrJvcd41NQ5g9feL0fy4ZBdfzq7vZsHsx96ZeHQg/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Cargo Expreso</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar último movimiento y plazo de 48h → Solicitar evidencias → Generar ticket por <b>Paquete perdido</b> → Escalar al grupo de WhatsApp → Informar ticket y SLA (7-15 días hábiles).</li>
+            <li><b>Ticket:</b> Comprobar plazo. Si falta info cambiar a <b>Incomplete</b>. Con info completa, escalar por WhatsApp, informar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_09",
+        category: "Cargo Expreso",
+        type: "Reclamaciones / PQR",
+        title: "Cargo Expreso: Reclamación por Paquete Robado (Theft)",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un paquete presuntamente robado, entregado en destino u origen de forma incompleta, con artículos faltantes.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, Especificación de productos enviados y cuáles fueron robados, Carta de reclamo.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "Plazo límite para reclamar: 48 horas. Tiempo estimado de gestión: 7 a 15 días hábiles.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1LOgmrJvcd41NQ5g9feL0fy4ZBdfzq7vZsHsx96ZeHQg/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Cargo Expreso</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar entrega dentro de 48h → Recopilar lista de artículos robados y evidencias → Generar ticket por <b>Paquete robado</b> → Escalar por WhatsApp → Notificar ticket y SLA (7 a 15 días hábiles).</li>
+            <li><b>Ticket:</b> Validar antecedentes. Si está incompleto pasar a <b>Incomplete</b>. Con info completa, escalar vía WhatsApp, notificar y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "cx_10",
+        category: "Cargo Expreso",
+        type: "Reclamaciones / PQR",
+        title: "Cargo Expreso: Reclamación por Paquete Dañado",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por daños o averías en su mercancía.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno dañado, Fotos del paquete y contenido despachado (antes del daño), Carta de reclamo.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "Plazo límite para reclamar: 48 horas. Tiempo de revisión del reclamo: 15 días hábiles.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1LOgmrJvcd41NQ5g9feL0fy4ZBdfzq7vZsHsx96ZeHQg/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Cargo Expreso</a></p>
+          <div class="section-title">Condiciones Críticas de Aceptación</div>
+          <ul>
+            <li><b>Embalaje:</b> Verificar cumplimiento estricto de guía de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a></li>
+            <li><b>Restricción:</b> <b>NO aplica para daños en el empaque exterior</b>, únicamente por avería a productos internos.</li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <p>Solicitar fotos antes y después del daño + carta. Generar ticket por <b>Paquete dañado</b>. Escalar al grupo de WhatsApp <i>Seguimientos Cargo Expreso & Envia.com</i>. Informar SLA de 15 días hábiles y mantener en <b>In review</b>.</p>
+        `
+      },
+      {
+        id: "cx_11",
+        category: "Cargo Expreso",
+        type: "Reclamaciones / PQR",
+        title: "Cargo Expreso: Reclamación por Cobro por Sobrepeso",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un ajuste de cobro realizado por sobrepeso.",
+        requiredInfo: "Número de guía, Foto del paquete sobre báscula (peso visible), Foto del paquete con cinta métrica (alto x ancho x largo visible), Carta de reclamo.",
+        channel: "Grupo WhatsApp: Seguimientos Cargo Expreso & Envia.com",
+        sla: "Plazo límite para reclamar: 30 días desde el ajuste. Tiempo de gestión: No definido.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1LOgmrJvcd41NQ5g9feL0fy4ZBdfzq7vZsHsx96ZeHQg/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Cargo Expreso</a></p>
+          <div class="section-title">Regla de Validación de Medidas</div>
+          <ul>
+            <li>Confirmar existencia de ajuste por sobrepeso en la guía y verificar fecha (< 30 días).</li>
+            <li>Comparar dimensiones/peso de las fotos con los datos declarados en la guía:
+              <ul>
+                <li><b>Si las dimensiones son superiores a las declaradas:</b> Se RECHAZA la solicitud al cliente.</li>
+                <li><b>Si las dimensiones son inferiores:</b> Se avanza con el reclamo y solicitud de revisión.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <p>Generar ticket por <b>Sobrepeso</b> con evidencias adjuntas. Gestionar por WhatsApp. Notificar al cliente número de ticket y mantener en <b>In review</b>.</p>
+        `
+      },
+      {
+        id: "fz_01",
+        category: "Forza",
+        type: "Ficha Técnica / Condiciones",
+        title: "Forza: Ficha Técnica y Condiciones de Servicio",
+        whenToUse: "Consulta de límites técnicos, peso, embalajes, coberturas, seguros, declarados y restricciones de Forza.",
+        requiredInfo: "Número de guía o consulta técnica del cliente.",
+        channel: "Slack #teamGT / WhatsApp: Guías Forza - Tendencys 🇬🇹 / Platform Envia Case Flow",
+        sla: "Consultas inmediatas.",
+        details: `
+          <div class="section-title">Ficha Técnica de Despacho</div>
+          <ul>
+            <li><b>Factor volumétrico:</b> 2272</li>
+            <li><b>Peso máximo y dimensiones:</b> Límites permitidos por guía. Peso máximo general: 200 libras.</li>
+            <li><b>Embalaje aceptado:</b> Bolsas de seguridad y cajas (consulte <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a>).</li>
+            <li><b>Horarios de corte de guías:</b> Sin corte para generar guía. Para recolección mismo día, solicitar antes de las 11:00 am.</li>
+          </ul>
+          <div class="section-title">Condiciones de Entrega, Recaudo y Políticas</div>
+          <ul>
+            <li><b>Intentos de entrega:</b> 2 intentos permitidos. Luego inicia devolución a origen.</li>
+            <li><b>Política de devoluciones:</b> La devolución <b>NO tiene costo</b>.</li>
+            <li><b>Servicio COD (Pago Contra Entrega):</b> Sí cuenta con servicio. Mínimo: Q1.00 | Máximo: Q5,000 | Comisión COD: 3.5%. El pago se realiza directamente a la cuenta de Ecartpay asociada al entregar. Ante inconsistencias, contactar al WhatsApp <a href="https://wa.me/50243887119" target="_blank" class="link-btn">WhatsApp +50243887119</a> o ticket de pago retrasado.</li>
+            <li><b>Seguros y Declarados:</b> Seguro mínimo mensajería: Q800 // Carga: Q800. Límite declarado: Q100,000 (100.000 Q).</li>
+            <li><b>Matriz de Cobertura:</b> Disponible en Slack #teamGT (pestaña "cobertura") o en <a href="https://drive.google.com/drive/folders/1VKFkHI6IL1HwNqUYY99XAYD7H4FB8O__?usp=drive_link" target="_blank" class="link-btn">Ver Carpeta Cobertura Drive</a>.</li>
+            <li><b>Mercancías prohibidas:</b> <a href="https://help.envia.com/articulos-prohibidos-y-restringidos/" target="_blank" class="link-btn">Ver Artículos Prohibidos</a></li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_recol",
+        category: "Forza",
+        type: "Recolecciones",
+        title: "Forza: Programación de Recolecciones (Fija y Esporádica)",
+        whenToUse: "Solicitud o programación de recolecciones fijas o esporádicas para paquetes con Forza.",
+        requiredInfo: "Fija: Dirección origen, nombre/teléfono despachador, cantidad de paquetes, descripción. Esporádica: Número de guía, dirección origen, datos despachador, cantidad y descripción.",
+        channel: "WhatsApp: Guías Forza- Tendencys 🇬🇹",
+        sla: "Fija: 1 a 3 días según origen. Esporádica: corte 11:00 am para mismo día.",
+        details: `
+          <div class="section-title">Recolección Fija — Forza</div>
+          <ul>
+            <li><b>Cantidad mínima diaria:</b> 15 paquetes (Si tiene menos paquetes, revisar con Forza la posibilidad de asignación).</li>
+            <li><b>Días y horario:</b> Lunes a viernes de 8:00 AM a 6:00 PM; Sábados hasta las 12:00 PM.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp - <i>Guías Forza- Tendencys 🇬🇹</i></li>
+            <li><b>Requisitos:</b> Dirección de origen, Nombre y teléfono de quien despacha, Cantidad de paquetes, Descripción de productos.</li>
+            <li><b>Tiempo de asignación:</b> 1 a 3 días, dependiendo del punto de origen.</li>
+          </ul>
+          <div class="section-title">Recolección Esporádica — Forza</div>
+          <ul>
+            <li><b>Cantidad mínima:</b> 1 paquete.</li>
+            <li><b>Días y horario:</b> Lunes a sábados de 8:00 AM a 6:00 PM.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp - <i>Guías Forza- Tendencys 🇬🇹</i></li>
+            <li><b>Requisitos:</b> Número de guía, Dirección de origen, Nombre y teléfono del despachador, Cantidad de paquetes, Descripción.</li>
+            <li><b>Horario de corte:</b> Solicitar máximo el mismo día antes de las 11:00 am para que pasen el mismo día; de lo contrario, queda para el siguiente día hábil.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_02",
+        category: "Forza",
+        type: "Consultas / Retrasos",
+        title: "Forza: Consulta por Envío Sin Movimiento",
+        whenToUse: "Aplica cuando el cliente ya despachó el envío, pero Forza no lo ha ingresado en su sistema o no registra movimiento después de 24 horas desde el despacho.",
+        requiredInfo: "Obligatorio: Número de guía, Fecha de despacho. Adicional: Comprobante de despacho (opcional, Forza no lo emite), Fotos del paquete y contenido interno.",
+        channel: "Grupo WhatsApp: Guías Forza – Tendencys",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Definición y Validaciones Iniciales Obligatorias</div>
+          <p><b>Definición:</b> Se considera "envío sin movimiento" cuando la guía no presenta actualizaciones y permanece únicamente en estado <b>Creado</b>.</p>
+          <p><b>Validación Inicial Obligatoria (Ambas deben cumplirse antes de gestionar):</b></p>
+          <ol>
+            <li>Que la guía se encuentre en estado "Creado".</li>
+            <li>Que el cliente confirme haber entregado el paquete a la transportadora.</li>
+          </ol>
+          <div class="section-title">Manejo de Excepciones</div>
+          <ul>
+            <li>Si las condiciones no se cumplen, identificar la situación real.</li>
+            <li><b>Si la guía está en estado "Cancelado":</b> Informar al cliente que el envío no fue entregado a la transportadora.</li>
+            <li>Si el cliente reporta algo diferente: cerrar este ticket y abrir uno nuevo según corresponda.</li>
+          </ul>
+          <div class="section-title">Flujo por Canales</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar estado "Creado" + entrega → Generar ticket por <b>Envío sin movimiento</b> → Solicitar revisión a <i>Guías Forza – Tendencys</i> por WhatsApp → Informar ticket y SLA de 1 a 3 días hábiles.</li>
+            <li><b>Ticket:</b> Confirmar info completa. Si falta, cambiar a <b>Incomplete</b>. Con info completa, solicitar revisión por WhatsApp, informar al cliente el SLA (1-3 días) y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_03",
+        category: "Forza",
+        type: "Consultas / Retrasos",
+        title: "Forza: Consulta por Envío Retrasado",
+        whenToUse: "Aplica cuando el envío superó el tiempo de promesa de entrega (SLA) al destinatario.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono, Dirección de entrega.",
+        channel: "Grupo WhatsApp: Guías Forza – Tendencys",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Regla Específica de Forza para Envío Retrasado</div>
+          <p>Se considera envío retrasado cuando:</p>
+          <ul>
+            <li><b>El último movimiento fue hace más de 2 días hábiles.</b></li>
+            <li><b>Han transcurrido 5 días desde el despacho y el envío no ha sido entregado.</b></li>
+          </ul>
+          <div class="section-title">Procedimiento de Atención</div>
+          <ol>
+            <li>Verificar tiempos de entrega según origen/destino y confirmar que el SLA fue superado.</li>
+            <li>Identificar si hay causa impidiendo la entrega. Solicitar únicamente datos faltantes.</li>
+            <li><b>Respond.io / WhatsApp:</b> Generar ticket por <b>Paquete retrasado</b> → Solicitar prioridad al grupo de WhatsApp <i>Guías Forza – Tendencys</i> → Informar ticket y SLA (1 a 3 días hábiles).</li>
+            <li><b>Ticket:</b> Verificar movimiento. Si falta info, pasar a <b>Incomplete</b>. Con datos completos, pedir prioridad vía WhatsApp, informar al cliente y cambiar a <b>In review</b>.</li>
+          </ol>
+        `
+      },
+      {
+        id: "fz_04",
+        category: "Forza",
+        type: "Novedades / Cambios",
+        title: "Forza: Solicitud de Redireccionamiento (Nueva Dirección)",
+        whenToUse: "Aplica cuando el cliente solicita que el envío sea entregado en una nueva dirección.",
+        requiredInfo: "Obligatorio: Número de guía, Nueva dirección (nomenclatura, complemento, ciudad). Adicional: Datos del destinatario (teléfono, nombre).",
+        channel: "Grupo WhatsApp: Guías Forza – Tendencys",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Reglas Específicas de Forza</div>
+          <ul>
+            <li><b>Número máximo de intentos de entrega permitidos:</b> 2 intentos.</li>
+            <li>Validar la cantidad de intentos realizados en la trazabilidad.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> → Solicitar gestión a <i>Guías Forza – Tendencys</i> por WhatsApp → Informar ticket y SLA (1 a 3 días hábiles).</li>
+            <li><b>Ticket:</b> Validar datos. Si falta info cambiar a <b>Incomplete</b>. Al estar completa, solicitar redirección por WhatsApp, notificar al cliente y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_05",
+        category: "Forza",
+        type: "Novedades / Cambios",
+        title: "Forza: Solicitud de Nuevo Intento de Entrega",
+        whenToUse: "Aplica cuando el cliente solicita un nuevo intento de entrega de un envío que no pudo ser entregado en un intento anterior.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono, Dirección de entrega.",
+        channel: "Grupo WhatsApp: Guías Forza – Tendencys",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Reglas Específicas de Forza</div>
+          <ul>
+            <li><b>Número máximo de intentos permitidos:</b> 2 intentos.</li>
+            <li>Revisar la última novedad registrada y el motivo del fallo anterior.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Generar ticket por <b>Intento de entrega</b> o <b>Paquete retrasado</b> → Solicitar gestión en grupo WhatsApp <i>Guías Forza – Tendencys</i> → Informar ticket y SLA (1-3 días hábiles).</li>
+            <li><b>Ticket:</b> Confirmar info. Si falta, cambiar a <b>Incomplete</b>. Con datos completos, gestionar reintento por WhatsApp, informar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_06",
+        category: "Forza",
+        type: "Novedades / Cambios",
+        title: "Forza: Solicitud de Retorno a Origen",
+        whenToUse: "Aplica cuando el cliente solicita devolver el paquete al origen.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Datos del remitente (dirección, número de contacto).",
+        channel: "Grupo WhatsApp: Guías Forza – Tendencys",
+        sla: "2 a 5 días hábiles.",
+        details: `
+          <div class="section-title">Reglas Específicas de Forza</div>
+          <ul>
+            <li><b>Condición:</b> No aplica para una guía entregada.</li>
+            <li><b>Costo de devolución:</b> La devolución <b>NO tiene costo</b> de flete.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> (registrando datos de retorno a origen) → Solicitar gestión a <i>Guías Forza – Tendencys</i> → Informar ticket y SLA (2 a 5 días hábiles).</li>
+            <li><b>Ticket:</b> Confirmar datos en origen. Si falta info, cambiar a <b>Incomplete</b>. Con datos completos, solicitar devolución vía WhatsApp, notificar al cliente y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_07",
+        category: "Forza",
+        type: "Reclamaciones / PQR",
+        title: "Forza: Reclamación por Entrega Incorrecta (Wrong Delivery)",
+        whenToUse: "Aplica cuando el envío aparece como entregado en destino u origen, pero el cliente no reconoce la entrega y manifiesta no haber recibido el paquete.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno, Evidencia en la que el destinatario manifieste que no recibió (capturas, audios, etc.).",
+        channel: "Plataforma Envia Case Flow + Seguimiento por Correo electrónico",
+        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo estimado de gestión/respuesta: 15 días hábiles.",
+        details: `
+          <p style="color:var(--envia-red); font-weight:bold;">¡ATENCIÓN! CANAL EXCLUSIVO DE RECLAMOS FORZA:</p>
+          <p>Los reclamos de Forza NO se envían por WhatsApp. Se deben subir obligatoriamente en la plataforma externa:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> <i>(El acceso lo otorga Michael Pinto)</i></p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ver Ejemplo de Reclamo</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar fecha (< 30 días) → Solicitar evidencias → Generar ticket por <b>Entrega incorrecta</b> → Subir el caso en <i>Case Flow</i> → Informar al cliente número de ticket y tiempo estimado de 15 días hábiles.</li>
+            <li><b>Ticket:</b> Comprobar plazo. Si falta evidencia cambiar a <b>Incomplete</b>. Con documentación completa, registrar en <i>Case Flow</i>, notificar al cliente el SLA de 15 días hábiles y mantener en <b>In review</b> con seguimiento constante por correo.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_08",
+        category: "Forza",
+        type: "Reclamaciones / PQR",
+        title: "Forza: Reclamación por Paquete Perdido",
+        whenToUse: "Aplica cuando el cliente reclama por un paquete presuntamente perdido, que no ha sido entregado ni en destino ni en origen.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno (como referencia para intentar ubicarlo).",
+        channel: "Plataforma Envia Case Flow + Seguimiento por Correo electrónico",
+        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo de revisión/gestión: 15 días hábiles.",
+        details: `
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (Acceso por Michael Pinto). Ver <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de Reclamo</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar último movimiento (< 30 días) → Solicitar evidencias → Generar ticket por <b>Paquete perdido</b> → Subir caso a <i>Case Flow</i> → Informar ticket y SLA de 15 días hábiles al cliente.</li>
+            <li><b>Ticket:</b> Validar info. Si está incompleta pasar a <b>Incomplete</b>. Con info completa, subir a <i>Case Flow</i>, informar al cliente y cambiar ticket a <b>In review</b>. Realizar seguimiento por correo electrónico.</li>
+          </ul>
+        `
+      },
+      {
+        id: "fz_09",
+        category: "Forza",
+        type: "Reclamaciones / PQR",
+        title: "Forza: Reclamación por Paquete Robado (Theft)",
+        whenToUse: "Aplica cuando el cliente reclama por un paquete presuntamente robado, que fue entregado en destino u origen de forma incompleta y presenta artículos faltantes.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno (cómo se despachó y cómo se entregó), Especificación de los productos enviados y cuáles fueron robados.",
+        channel: "Plataforma Envia Case Flow + Seguimiento por Correo electrónico",
+        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo estimado de gestión: 15 días hábiles.",
+        details: `
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
+          <div class="section-title">Consideraciones de Política Forza</div>
+          <p>La responsabilidad de Forza por pérdida o daño está limitada, salvo que se haya adquirido una protección adicional, y sus términos distinguen entre pérdida/daño directo y pérdidas indirectas (Forza Delivery).</p>
+          <div class="section-title">Flujo de Atención</div>
+          <p>Solicitar factura, fotos comparativas y detalle de robados. Generar ticket por <b>Paquete robado</b>. Registrar el reclamo en la plataforma <i>Case Flow</i>. Notificar al cliente tiempo estimado de 15 días hábiles y mantener ticket en <b>In review</b> con seguimiento constante por correo.</p>
+        `
+      },
+      {
+        id: "fz_10",
+        category: "Forza",
+        type: "Reclamaciones / PQR",
+        title: "Forza: Reclamación por Paquete Dañado",
+        whenToUse: "Aplica cuando el cliente presenta un reclamo por daños en la mercancía.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo (cómo se despachó y cómo se entregó), Fotos y descripción del contenido interno dañado (cómo se despachó y cómo se entregó), Especificar cuáles productos sufrieron daño.",
+        channel: "Plataforma Envia Case Flow + Seguimiento por Correo electrónico",
+        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo de revisión del reclamo: 15 días hábiles.",
+        details: `
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
+          <div class="section-title">Condiciones de Embalaje y Cobertura</div>
+          <ul>
+            <li>Verificar que las condiciones del envío cumplen regulaciones de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a></li>
+            <li><b>Restricción:</b> <b>No aplica para daños en embalaje exterior</b>, solo para productos internos.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <p>Recopilar evidencias antes/después. Generar ticket por <b>Paquete dañado</b>. Subir el reclamo a la plataforma <i>Case Flow</i>. Informar SLA de 15 días hábiles y cambiar ticket a <b>In review</b> realizando seguimiento por correo.</p>
+        `
+      },
+      {
+        id: "fz_11",
+        category: "Forza",
+        type: "Reclamaciones / PQR",
+        title: "Forza: Reclamación por Cobro por Sobrepeso",
+        whenToUse: "Aplica cuando el cliente presenta un reclamo por un ajuste de cobro por sobrepeso.",
+        requiredInfo: "Número de guía, Foto del paquete sobre báscula (peso visible), Foto del paquete con cinta métrica (alto x ancho x largo visible).",
+        channel: "Plataforma Envia Case Flow + Seguimiento por Correo electrónico",
+        sla: "Plazo límite para realizar el reclamo: 30 días desde el ajuste. Tiempo estimado de gestión: No definido.",
+        details: `
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
+          <div class="section-title">Regla de Validación de Medidas</div>
+          <ul>
+            <li>Confirmar existencia de ajuste por sobrepeso en la guía y verificar fecha (< 30 días).</li>
+            <li>Comparar peso y dimensiones con los datos declarados en la guía:
+              <ul>
+                <li><b>Si las dimensiones son mayores a las registradas en la guía:</b> Se RECHAZA la solicitud al cliente.</li>
+                <li><b>Si las dimensiones son iguales o inferiores:</b> Se avanza con el reclamo.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <p>Generar ticket por <b>Sobrepeso</b>. Cuando la información esté completa, subir la reclamación a la plataforma <i>Case Flow</i>. Informar al cliente que la gestión fue realizada y cambiar ticket a <b>In review</b>.</p>
+        `
+      },
+      {
+        id: "tm_01",
+        category: "Telomando",
+        type: "Ficha Técnica / Condiciones",
+        title: "Telomando: Ficha Técnica y Condiciones de Servicio",
+        whenToUse: "Consulta de límites técnicos, peso, embalajes, coberturas, seguros, declarados y restricciones de Telomando.",
+        requiredInfo: "Número de guía o consulta técnica del cliente.",
+        channel: "Slack #teamGT / WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Consultas inmediatas.",
+        details: `
+          <div class="section-title">Ficha Técnica de Despacho</div>
+          <ul>
+            <li><b>Factor volumétrico:</b> N/A</li>
+            <li><b>Peso máximo y dimensiones:</b> 75 libras.</li>
+            <li><b>Embalaje aceptado:</b> Bolsas de seguridad, cajas (consulte <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a>).</li>
+            <li><b>Horarios de corte de guías:</b> Sin corte para generar guía. Para recolección el mismo día, gestionar antes de las 11:00 am.</li>
+          </ul>
+          <div class="section-title">Condiciones de Entrega, Recaudo y Políticas</div>
+          <ul>
+            <li><b>Intentos de entrega:</b> 2 intentos permitidos. Luego inicia proceso de devolución a origen.</li>
+            <li><b>Política de devoluciones:</b> La devolución <b>NO tiene costo</b>.</li>
+            <li><b>Servicio COD (Pago Contra Entrega):</b> Sí cuenta con servicio. Mínimo: Q1.00 | Máximo: Q3,000 (Q3.000) | Comisión COD: 2%. El pago se realiza directamente a la cuenta Ecartpay asociada al entregar. Si no se evidencia, contactar por WhatsApp <a href="https://wa.me/50243887119" target="_blank" class="link-btn">WhatsApp +50243887119</a> o ticket de pago retrasado.</li>
+            <li><b>Seguros y Declarados:</b> Seguro mínimo mensajería: Q750 // Carga: Q750 (4.5%). Límite declarado: Q10,000 (Q10.000).</li>
+            <li><b>Matriz de Cobertura:</b> Disponible en Slack #teamGT (pestaña "cobertura") o en <a href="https://drive.google.com/drive/folders/1NIoHCrjt79atHIFiTDG4Ox6jYkf6DjJH?usp=sharing" target="_blank" class="link-btn">Ver Carpeta Cobertura Drive</a>.</li>
+            <li><b>Mercancías prohibidas:</b> <a href="https://help.envia.com/articulos-prohibidos-y-restringidos/" target="_blank" class="link-btn">Ver Artículos Prohibidos</a></li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_recol",
+        category: "Telomando",
+        type: "Recolecciones",
+        title: "Telomando: Programación de Recolecciones (Fija y Esporádica)",
+        whenToUse: "Solicitud o programación de recolecciones fijas o esporádicas para paquetes con Telomando.",
+        requiredInfo: "Fija: Dirección origen, nombre/teléfono despachador, cantidad de paquetes, descripción. Esporádica: Número de guía, dirección origen, datos despachador, cantidad y descripción.",
+        channel: "WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Fija: 1 día de asignación. Esporádica: solicitar el día anterior para garantizar servicio.",
+        details: `
+          <div class="section-title">Recolección Fija — Telomando</div>
+          <ul>
+            <li><b>Cantidad mínima diaria:</b> 1 paquete.</li>
+            <li><b>Días y horario:</b> Lunes a sábado de 8:00 am a 6:00 pm.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp - <i>TELOMANDO GT / Seguimiento & Reclamos</i></li>
+            <li><b>Requisitos:</b> Dirección de origen, Nombre y teléfono del despachador, Cantidad de paquetes, Descripción de productos.</li>
+            <li><b>Tiempo en ser asignada:</b> 1 día.</li>
+          </ul>
+          <div class="section-title">Recolección Esporádica — Telomando</div>
+          <ul>
+            <li><b>Cantidad mínima:</b> 1 paquete.</li>
+            <li><b>Días y horario:</b> Lunes a sábado de 8:00 am a 6:00 pm.</li>
+            <li><b>Canal de solicitud:</b> WhatsApp - <i>TELOMANDO GT / Seguimiento & Reclamos</i></li>
+            <li><b>Requisitos:</b> Número de guía, Dirección de origen, Nombre y teléfono de quien despacha, Cantidad de paquetes, Descripción.</li>
+            <li><b>Horario de corte:</b> Se debe solicitar el día anterior, para garantizar el servicio.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_02",
+        category: "Telomando",
+        type: "Consultas / Retrasos",
+        title: "Telomando: Consulta por Despacho Sin Movimiento",
+        whenToUse: "Aplica cuando el cliente tiene un envío que ya despachó, pero Telomando no lo ha ingresado en su sistema o no le ha dado movimiento luego de 24 horas desde el despacho.",
+        requiredInfo: "Obligatorio: Número de guía, Fecha de despacho. Adicional: Fotos del paquete y contenido interno, Comprobante de despacho.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "24 horas.",
+        details: `
+          <div class="section-title">Validaciones Iniciales y Tiempos</div>
+          <ol>
+            <li>Identificar el número de guía, consultar estado y trazabilidad.</li>
+            <li>Solicitar al cliente fecha de despacho y evidencia del mismo.</li>
+            <li><b>Tiempo estimado para gestionar:</b> 24 horas.</li>
+          </ol>
+          <div class="section-title">Flujo por Canales</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Revisar trazabilidad → Generar ticket por <b>Envío sin movimiento</b> con toda la info → Solicitar gestión al grupo WhatsApp <i>TELOMANDO GT / Seguimiento & Reclamos</i> → Informar ticket y tiempo estimado de gestión (24 horas).</li>
+            <li><b>Ticket:</b> Confirmar info. Si falta, cambiar a <b>Incomplete</b>. Con info completa, solicitar revisión vía WhatsApp, notificar tiempo estimado al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_03",
+        category: "Telomando",
+        type: "Consultas / Retrasos",
+        title: "Telomando: Consulta por Envío Retrasado",
+        whenToUse: "Aplica cuando el cliente manifiesta tener un envío retrasado y se excedió el tiempo de promesa de entrega.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono, Dirección de entrega.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "24 a 48 horas.",
+        details: `
+          <div class="section-title">Regla Específica de Telomando</div>
+          <p>Se considera envío retrasado cuando: <b>El último movimiento fue hace más de 24 horas</b> OR <b>Lleva 2 días desde el despacho y no ha sido entregado</b>.</p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li>Solicitar únicamente datos faltantes para el reintento.</li>
+            <li><b>Respond.io / WhatsApp:</b> Generar ticket por <b>Paquete retrasado</b> → Solicitar prioridad al grupo de WhatsApp <i>TELOMANDO GT / Seguimiento & Reclamos</i> → Informar ticket y SLA (24 a 48 horas).</li>
+            <li><b>Ticket:</b> Validar datos. Si falta info cambiar a <b>Incomplete</b>. Con info completa, gestionar por WhatsApp, notificar al cliente el SLA (24-48 horas) y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_04",
+        category: "Telomando",
+        type: "Novedades / Cambios",
+        title: "Telomando: Solicitud de Redireccionamiento (Nueva Dirección)",
+        whenToUse: "Aplica cuando el cliente solicita hacer la entrega en una nueva dirección.",
+        requiredInfo: "Obligatorio: Número de guía, Nueva dirección (nomenclatura, complemento, ciudad). Adicional: Datos del destinatario (teléfono, nombre).",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "24 a 48 horas.",
+        details: `
+          <div class="section-title">Reglas Específicas de Telomando</div>
+          <ul>
+            <li><b>Número máximo de intentos permitidos:</b> 2 intentos.</li>
+            <li>Verificar si el envío aún puede recibir un nuevo intento.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> → Escalar al grupo WhatsApp <i>TELOMANDO GT / Seguimiento & Reclamos</i> → Informar ticket y SLA de 24 a 48 horas.</li>
+            <li><b>Ticket:</b> Confirmar datos. Si falta info pasar a <b>Incomplete</b>. Con info completa, solicitar redireccionamiento por WhatsApp, informar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_05",
+        category: "Telomando",
+        type: "Novedades / Cambios",
+        title: "Telomando: Solicitud de Nuevo Intento de Entrega",
+        whenToUse: "Aplica cuando el cliente solicita un nuevo intento de entrega de un envío que no pudo ser entregado durante un intento anterior.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Número de teléfono, Dirección de entrega.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "24 a 48 horas.",
+        details: `
+          <div class="section-title">Reglas Específicas de Telomando</div>
+          <ul>
+            <li><b>Número máximo de intentos permitidos:</b> 2 intentos.</li>
+            <li>Revisar la última novedad registrada y el motivo por el cual no se concretó la entrega.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Generar ticket por <b>Intento de entrega</b> o <b>Paquete retrasado</b> → Solicitar gestión en grupo WhatsApp → Informar ticket y SLA de 24 a 48 horas.</li>
+            <li><b>Ticket:</b> Validar información. Si está incompleta cambiar a <b>Incomplete</b>. Con info completa, solicitar reintento vía WhatsApp, informar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_06",
+        category: "Telomando",
+        type: "Novedades / Cambios",
+        title: "Telomando: Solicitud de Retorno a Origen",
+        whenToUse: "Aplica cuando el cliente solicita devolver su paquete al origen.",
+        requiredInfo: "Obligatorio: Número de guía. Adicional: Datos del remitente (dirección, número de contacto).",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "1 a 3 días hábiles.",
+        details: `
+          <div class="section-title">Reglas Específicas de Telomando</div>
+          <ul>
+            <li><b>Condición:</b> No aplica para una guía que figura como entregada.</li>
+            <li><b>Costo de devolución:</b> La devolución <b>NO tiene costo</b>.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Confirmar datos → Generar ticket por <b>Redirección</b> (registrando datos de devolución a origen) → Solicitar gestión por el grupo de WhatsApp → Informar ticket y SLA (1 a 3 días hábiles).</li>
+            <li><b>Ticket:</b> Confirmar datos en origen. Si falta info pasar a <b>Incomplete</b>. Con info completa, solicitar devolución por WhatsApp, informar al cliente y pasar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_07",
+        category: "Telomando",
+        type: "Reclamaciones / PQR",
+        title: "Telomando: Reclamación por Entrega Incorrecta (Wrong Delivery)",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un paquete que registra como entregado en destino u origen, pero no reconoce dicha entrega y manifiesta que no lo ha recibido.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, Evidencia donde el destinatario manifieste que no recibió (capturas, audios), Carta de reclamo.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Plazo límite para realizar el reclamo: 1 semana. Tiempo estimado de gestión: 1 semana.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1hSL48lm6yCej2KSWRLBYq7_QZj1Xf8MONANe0-TNoiw/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Telomando</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar fecha de entrega (< 1 semana) → Solicitar evidencias y carta → Generar ticket por <b>Entrega incorrecta</b> → Solicitar gestión en grupo WhatsApp → Notificar ticket y SLA de 1 semana.</li>
+            <li><b>Ticket:</b> Verificar plazo. Si falta info/evidencias pasar a <b>Incomplete</b>. Con documentación completa, gestionar por WhatsApp, notificar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_08",
+        category: "Telomando",
+        type: "Reclamaciones / PQR",
+        title: "Telomando: Reclamación por Paquete Perdido",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un paquete presuntamente perdido, que no se ha entregado en destino ni en origen.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno (referencia para tratar de ubicarlo), Carta de reclamo.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Plazo límite para realizar el reclamo: 1 semana. Tiempo de revisión del reclamo: 1 semana.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1hSL48lm6yCej2KSWRLBYq7_QZj1Xf8MONANe0-TNoiw/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Telomando</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar último movimiento (< 1 semana) → Solicitar evidencias → Generar ticket por <b>Paquete perdido</b> → Escalar al grupo WhatsApp → Informar ticket y SLA de 1 semana.</li>
+            <li><b>Ticket:</b> Verificar plazo. Si falta info pasar a <b>Incomplete</b>. Con info completa, escalar por WhatsApp, notificar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_09",
+        category: "Telomando",
+        type: "Reclamaciones / PQR",
+        title: "Telomando: Reclamación por Paquete Robado (Theft)",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un paquete presuntamente robado, entregado en destino u origen de forma incompleta, con artículos faltantes.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, Especificación de productos enviados y cuáles fueron robados, Carta de reclamo.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Plazo límite para realizar el reclamo: 1 semana. Tiempo estimado de gestión: 1 semana.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1hSL48lm6yCej2KSWRLBYq7_QZj1Xf8MONANe0-TNoiw/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Telomando</a></p>
+          <div class="section-title">Flujo de Atención</div>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Validar fecha de entrega (< 1 semana) → Solicitar lista de productos robados y evidencias → Generar ticket por <b>Paquete robado</b> → Escalar por WhatsApp → Informar ticket y SLA de 1 semana.</li>
+            <li><b>Ticket:</b> Verificar evidencias. Si está incompleto cambiar a <b>Incomplete</b>. Con info completa, solicitar gestión vía WhatsApp, notificar al cliente y cambiar a <b>In review</b>.</li>
+          </ul>
+        `
+      },
+      {
+        id: "tm_10",
+        category: "Telomando",
+        type: "Reclamaciones / PQR",
+        title: "Telomando: Reclamación por Paquete Dañado",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por daños en su mercancía.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno dañado, Fotos del paquete y contenido despachado (antes del daño), Carta de reclamo.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Plazo límite para realizar el reclamo: 1 semana. Tiempo de revisión del reclamo: 2 a 5 días.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1hSL48lm6yCej2KSWRLBYq7_QZj1Xf8MONANe0-TNoiw/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Telomando</a></p>
+          <div class="section-title">Condiciones Críticas de Embalaje</div>
+          <ul>
+            <li>Verificar que cumpla condiciones de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a></li>
+            <li><b>Restricción:</b> <b>Solo aplican daños en el contenido interno</b>, no en el embalaje exterior.</li>
+          </ul>
+          <div class="section-title">Flujo de Atención</div>
+          <p>Solicitar fotos antes y después del daño + carta. Generar ticket por <b>Paquete dañado</b>. Escalar por el grupo de WhatsApp <i>TELOMANDO GT / Seguimiento & Reclamos</i>. Informar tiempo estimado de 2 a 5 días y mantener en <b>In review</b>.</p>
+        `
+      },
+      {
+        id: "tm_11",
+        category: "Telomando",
+        type: "Reclamaciones / PQR",
+        title: "Telomando: Reclamación por Cobro por Sobrepeso",
+        whenToUse: "Aplica cuando el cliente realiza un reclamo por un ajuste realizado por sobrepeso.",
+        requiredInfo: "Número de guía, Foto del paquete sobre báscula (peso visible), Foto del paquete con cinta métrica (alto x ancho x largo visible), Carta de reclamo.",
+        channel: "Grupo WhatsApp: TELOMANDO GT / Seguimiento & Reclamos",
+        sla: "Plazo límite para realizar el reclamo: 30 días desde el ajuste. Tiempo estimado de gestión: No definido.",
+        details: `
+          <p><b>Carta de Reclamo Obligatoria:</b> <a href="https://docs.google.com/document/d/1hSL48lm6yCej2KSWRLBYq7_QZj1Xf8MONANe0-TNoiw/edit?usp=sharing" target="_blank" class="link-btn">Descargar Carta de Reclamo Telomando</a></p>
+          <div class="section-title">Regla de Validación de Medidas</div>
+          <ul>
+            <li>Confirmar existencia de ajuste por sobrepeso y verificar fecha (< 30 días).</li>
+            <li>Comparar dimensiones/peso de las fotos con los datos declarados en la guía:
+              <ul>
+                <li><b>Si las dimensiones son superiores:</b> Se RECHAZA la solicitud.</li>
+                <li><b>Si las dimensiones son inferiores:</b> Se solicita la revisión con la paquetería.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="section-title">Flujo de Gestión</div>
+          <p>Generar ticket por <b>Sobrepeso</b> con evidencias. Escalar por el grupo de WhatsApp. Notificar ticket al cliente y mantener en <b>In review</b>.</p>
+        `
+      },
+      {
+        id: "cierre_cx",
+        category: "Cargo Expreso",
+        type: "Cierre Logístico",
+        title: "Cargo Expreso: Cierre Logístico (Actualización a Estado Entregado)",
+        whenToUse: "Aplica para actualizar manualmente una guía al estado 'Entregado' cuando el envío ya fue entregado físicamente, pero el sistema de Envia.com aún no refleja dicha actualización.",
+        requiredInfo: "Evidencia de entrega (foto del cliente con el producto recibido, captura de pantalla confirmando recepción, o cualquier evidencia válida).",
+        channel: "WhatsApp – Seguimientos Cargo Expreso & Envia.com → Slack #TeamGT (Formulario Soporte Carriers Guatemala 1)",
+        sla: "24 a 72 horas.",
+        details: `
+          <div class="section-title">Paso a Paso del Proceso</div>
+          <ol>
+            <li><b>1. Solicitar evidencia de entrega:</b> Foto del cliente con producto o captura confirmando recepción.</li>
+            <li><b>2. Corroborar con Cargo Expreso:</b> Consultar vía WhatsApp <i>Seguimientos Cargo Expreso & Envia.com</i> si efectivamente fue entregado.</li>
+            <li><b>3. Si Cargo Expreso indica que NO ha sido entregado:</b> Notificar al cliente que según Cargo Expreso no registra entrega y esperar la actualización de ellos. <b>No solicitar actualización manual.</b></li>
+            <li><b>4. Si Cargo Expreso CONFIRMA que fue entregado:</b>
+              <ul>
+                <li>Ingresar al canal de Slack: <b>TeamGT</b>.</li>
+                <li>Iniciar el flujo de trabajo: <b>Formulario Soporte Carriers Guatemala 1</b>.</li>
+                <li>Diligenciar la información correspondiente y escalar al equipo de Carriers.</li>
+              </ul>
+            </li>
+            <li><b>5. Comunicación al cliente:</b> Informar que fue reportado para actualizar el estado. Indicar que la actualización puede tardar entre <b>24 y 72 horas</b> (comunicar como tiempo estimado, no garantizado).</li>
+          </ol>
+        `
+      },
+      {
+        id: "cierre_fz",
+        category: "Forza",
+        type: "Cierre Logístico",
+        title: "Forza: Cierre Logístico (Actualización a Estado Entregado)",
+        whenToUse: "Aplica para actualizar manualmente una guía al estado 'Entregado' cuando el envío ya fue entregado físicamente, pero el sistema de Envia.com aún no refleja dicha actualización.",
+        requiredInfo: "Evidencia de entrega (foto del cliente con el producto recibido, captura de pantalla confirmando recepción, o cualquier evidencia válida).",
+        channel: "WhatsApp – Guías Forza- Tendencys 🇬🇹 → Slack #TeamGT (Formulario Soporte Carriers Guatemala 1)",
+        sla: "24 a 72 horas.",
+        details: `
+          <div class="section-title">Paso a Paso del Proceso</div>
+          <ol>
+            <li><b>1. Solicitar evidencia de entrega:</b> Foto del cliente con producto o captura confirmando recepción.</li>
+            <li><b>2. Corroborar con Forza:</b> Consultar vía WhatsApp <i>Guías Forza- Tendencys 🇬🇹</i> si efectivamente fue entregado.</li>
+            <li><b>3. Si Forza indica que NO ha sido entregado:</b> Notificar al cliente que según Forza no registra entrega y esperar la actualización de ellos. <b>No solicitar actualización manual.</b></li>
+            <li><b>4. Si Forza CONFIRMA que fue entregado:</b>
+              <ul>
+                <li>Ingresar al canal de Slack: <b>TeamGT</b>.</li>
+                <li>Iniciar el flujo de trabajo: <b>Formulario Soporte Carriers Guatemala 1</b>.</li>
+                <li>Diligenciar la información correspondiente y escalar al equipo de Carriers.</li>
+              </ul>
+            </li>
+            <li><b>5. Comunicación al cliente:</b> Informar que fue reportado para actualizar el estado. Indicar que la actualización puede tardar entre <b>24 y 72 horas</b> (comunicar como tiempo estimado, no garantizado).</li>
+          </ol>
+        `
+      },
+      {
+        id: "cierre_tm",
+        category: "Telomando",
+        type: "Cierre Logístico",
+        title: "Telomando: Cierre Logístico (Actualización a Estado Entregado)",
+        whenToUse: "Aplica para actualizar manualmente una guía al estado 'Entregado' cuando el envío ya fue entregado físicamente, pero el sistema de Envia.com aún no refleja dicha actualización.",
+        requiredInfo: "Evidencia de entrega (foto del cliente con el producto recibido, captura de pantalla confirmando recepción, o cualquier evidencia válida).",
+        channel: "WhatsApp – TELOMANDO GT / Seguimiento & Reclamos → Slack #TeamGT (Formulario Soporte Carriers Guatemala 1)",
+        sla: "24 a 72 horas.",
+        details: `
+          <div class="section-title">Paso a Paso del Proceso</div>
+          <ol>
+            <li><b>1. Solicitar evidencia de entrega:</b> Foto del cliente con producto o captura confirmando recepción.</li>
+            <li><b>2. Corroborar con Telomando:</b> Consultar vía WhatsApp <i>TELOMANDO GT / Seguimiento & Reclamos</i> si efectivamente fue entregado.</li>
+            <li><b>3. Si Telomando indica que NO ha sido entregado:</b> Notificar al cliente que según Telomando no registra entrega y esperar la actualización de ellos. <b>No solicitar actualización manual.</b></li>
+            <li><b>4. Si Telomando CONFIRMA que fue entregado:</b>
+              <ul>
+                <li>Ingresar al canal de Slack: <b>TeamGT</b>.</li>
+                <li>Iniciar el flujo de trabajo: <b>Formulario Soporte Carriers Guatemala 1</b>.</li>
+                <li>Diligenciar la información correspondiente y escalar al equipo de Carriers.</li>
+              </ul>
+            </li>
+            <li><b>5. Comunicación al cliente:</b> Informar que fue reportado para actualizar el estado. Indicar que la actualización puede tardar entre <b>24 y 72 horas</b> (comunicar como tiempo estimado, no garantizado).</li>
+          </ol>
+        `
+      }
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const resetBtn = document.getElementById('resetBtn');
+    const processList = document.getElementById('processList');
+    const contentCard = document.getElementById('contentCard');
+    const countDisplay = document.getElementById('countDisplay');
+
+    let activeId = null;
+
+    function renderList() {
+      const search = searchInput.value.toLowerCase().trim();
+      const cat = categoryFilter.value;
+      const type = typeFilter.value;
+
+      const filtered = database.filter(item => {
+        const matchesCat = (cat === 'ALL' || item.category === cat);
+        const matchesType = (type === 'ALL' || item.type === type);
+        
+        const fullContent = (item.title + ' ' + item.whenToUse + ' ' + item.requiredInfo + ' ' + item.details).toLowerCase();
+        const matchesSearch = !search || fullContent.includes(search);
+
+        return matchesCat && matchesType && matchesSearch;
+      });
+
+      countDisplay.innerText = filtered.length;
+      processList.innerHTML = '';
+
+      if (filtered.length === 0) {
+        processList.innerHTML = '<div style="padding:25px; text-align:center; color:#64748b; font-size:0.9rem;">No se encontraron procesos coincidentes.</div>';
+        contentCard.innerHTML = `
+          <div class="empty-state">
+            <h3>Sin resultados de búsqueda</h3>
+            <p>Ajusta el texto de búsqueda o cambia los filtros de categoría y tipo.</p>
+          </div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `process-item ${item.id === activeId ? 'active' : ''}`;
+        div.innerHTML = `
+          <span class="tag">${item.category}</span>
+          <div class="title">${item.title}</div>
+        `;
+        div.onclick = () => selectProcess(item.id);
+        processList.appendChild(div);
+      });
+
+      if (!filtered.some(i => i.id === activeId)) {
+        selectProcess(filtered[0].id);
+      }
+    }
+
+    function selectProcess(id) {
+      activeId = id;
+      const item = database.find(i => i.id === id);
+      if (!item) return;
+
+      document.querySelectorAll('.process-item').forEach(el => el.classList.remove('active'));
+      const activeEl = Array.from(document.querySelectorAll('.process-item')).find(el => el.innerText.includes(item.title));
+      if (activeEl) activeEl.classList.add('active');
+
+      contentCard.innerHTML = `
+        <div class="content-header">
+          <span class="category-badge">${item.category} — ${item.type}</span>
+          <h2>${item.title}</h2>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="label">Canal de Escalación / Gestión</div>
+            <div class="value">${item.channel}</div>
+          </div>
+          <div class="info-box alert">
+            <div class="label">SLA / Tiempo Estimado</div>
+            <div class="value">${item.sla}</div>
+          </div>
+          <div class="info-box danger">
+            <div class="label">Información / Evidencias Obligatorias</div>
+            <div class="value" style="font-size:0.85rem;">${item.requiredInfo}</div>
+          </div>
+        </div>
+
+        <div class="detail-body">
+          <div class="section-title">¿Cuándo utilizar este proceso?</div>
+          <p>${item.whenToUse}</p>
+
+          <div class="section-title">Procedimiento Completo de Atención</div>
+          ${item.details}
+        </div>
+      `;
+    }
+
+    searchInput.addEventListener('input', renderList);
+    categoryFilter.addEventListener('change', renderList);
+    typeFilter.addEventListener('change', renderList);
+
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      categoryFilter.value = 'ALL';
+      typeFilter.value = 'ALL';
+      renderList();
+    });
+
+    renderList();
+  </script>
+</body>
+</html>
