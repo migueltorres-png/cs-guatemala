@@ -860,7 +860,17 @@
         whenToUse: "Aplica cuando el envío aparece como entregado en destino u origen, pero el cliente no reconoce la entrega y manifiesta no haber recibido el paquete.",
         requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno, Evidencia en la que el destinatario manifieste que no recibió (capturas, audios, etc.).",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para reportar el reclamo: 48 horas desde el incidente o entrega // Tiempo límite para enviar el formulario de reclamo: 8 días desde el incidente o entrega",
+        Guía para presentación de reclamo: "1. Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que
+la empresa entregó el envió, indicando el número de la guía afectada.
+2. Completar la siguiente documentación para el reclamo, en un lapso no
+mayor a 8 días después de dar aviso sobre el reclamo:
+ Carta formal del reclamo: la cual debe consignar el número de guía
+afectada, monto a reclamar (precio de costo con IVA) y descripción de
+la mercadería que se reclama.
+ Copia de factura o nota de envío correspondiente a la mercadería
+afectada. (en caso de no contar con dicho documento se aceptará una
+certificación extendida por el contador general de su empresa).
+ Fotografías del producto afectado."
         
         details: `
           <p style="color:var(--envia-red); font-weight:bold;">¡ATENCIÓN! CANAL EXCLUSIVO DE RECLAMOS FORZA:</p>
@@ -882,7 +892,7 @@
         whenToUse: "Aplica cuando el cliente reclama por un paquete presuntamente perdido, que no ha sido entregado ni en destino ni en origen.",
         requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno (como referencia para intentar ubicarlo).",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo de revisión/gestión: 15 días hábiles.",
+        sla: "Plazo límite para reportar el reclamo: 48 horas desde el incidente o entrega // Tiempo límite para enviar el formulario de reclamo: 8 días desde el incidente o entrega", // Tiempo de respuesta por parte de Forza 
         details: `
           <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
           <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (Acceso por Michael Pinto). Ver <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de Reclamo</a></p>
