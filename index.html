@@ -860,15 +860,16 @@
         whenToUse: "Aplica cuando el envío aparece como entregado en destino u origen, pero el cliente no reconoce la entrega y manifiesta no haber recibido el paquete.",
         requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno, Evidencia en la que el destinatario manifieste que no recibió (capturas, audios, etc.).",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo estimado de gestión/respuesta: 15 días hábiles.",
+        sla: "Plazo límite para reportar el reclamo: 48 horas desde el incidente o entrega // Tiempo límite para enviar el formulario de reclamo: 8 días desde el incidente o entrega",
+        
         details: `
           <p style="color:var(--envia-red); font-weight:bold;">¡ATENCIÓN! CANAL EXCLUSIVO DE RECLAMOS FORZA:</p>
-          <p>Los reclamos de Forza NO se envían por WhatsApp. Se deben subir obligatoriamente en la plataforma externa:</p>
+          <p>Los reclamos de Forza NO se envían por WhatsApp. Se deben subir obligatoriamente en la plataforma case flow:</p>
           <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> <i>(El acceso lo otorga Michael Pinto)</i></p>
           <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ver Ejemplo de Reclamo</a></p>
           <div class="section-title">Flujo de Atención</div>
           <ul>
-            <li><b>Respond.io / WhatsApp:</b> Validar fecha (< 30 días) → Solicitar evidencias → Generar ticket por <b>Entrega incorrecta</b> → Subir el caso en <i>Case Flow</i> → Informar al cliente número de ticket y tiempo estimado de 15 días hábiles.</li>
+            <li><b>Respond.io / WhatsApp:</b> Validar fecha (< 48 horas) → Solicitar evidencias → Generar ticket por <b>Entrega incorrecta</b> → Subir el caso en <i>Case Flow</i> (máximo 8 días después del incidente)→ Informar al cliente número de ticket y tiempo estimado de 15 días hábiles.</li>
             <li><b>Ticket:</b> Comprobar plazo. Si falta evidencia cambiar a <b>Incomplete</b>. Con documentación completa, registrar en <i>Case Flow</i>, notificar al cliente el SLA de 15 días hábiles y mantener en <b>In review</b> con seguimiento constante por correo.</li>
           </ul>
         `
