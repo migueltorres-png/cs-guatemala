@@ -698,6 +698,25 @@
             <li><b>Política de devoluciones:</b> La devolución <b>NO tiene costo</b>.</li>
             <li><b>Servicio COD (Pago Contra Entrega):</b> Sí cuenta con servicio. Mínimo: Q1.00 | Máximo: Q5,000 | Comisión COD: 3.5%. El pago se realiza directamente a la cuenta de Ecartpay asociada al entregar. Ante inconsistencias, contactar al WhatsApp <a href="https://wa.me/50243887119" target="_blank" class="link-btn">WhatsApp +50243887119</a> o ticket de pago retrasado.</li>
             <li><b>Seguros y Declarados:</b> Seguro mínimo mensajería: Q800 // Carga: Q800. Límite declarado: Q100,000 (100.000 Q).</li>
+          </ul>
+          <div class="section-title">Gestión de novedades y PQR</div>
+          <ul>
+            <li><b>Tiempos de respuesta para indemnizaciones:</b> El tiempo promedio de respuesta para los reclamos puede ser de 7 a 15 días hábiles.</li>
+            <li><b>Listado de documentos para investigación:</b>
+              <ul>
+                <li>Factura comercial u orden de compra.</li>
+                <li>Fotos del empaque externo.</li>
+                <li>Fotos y descripción del contenido interno.</li>
+              </ul>
+            </li>
+            <li><b>Canal de escalación:</b>
+              <ul>
+                <li>Subir reclamo en plataforma: <a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto).</li>
+                <li><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a>.</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
             <li><b>Matriz de Cobertura:</b> Disponible en Slack #teamGT (pestaña "cobertura") o en <a href="https://drive.google.com/drive/folders/1VKFkHI6IL1HwNqUYY99XAYD7H4FB8O__?usp=drive_link" target="_blank" class="link-btn">Ver Carpeta Cobertura Drive</a>.</li>
             <li><b>Mercancías prohibidas:</b> <a href="https://help.envia.com/articulos-prohibidos-y-restringidos/" target="_blank" class="link-btn">Ver Artículos Prohibidos</a></li>
           </ul>
@@ -857,30 +876,35 @@
         category: "Forza",
         type: "Reclamaciones / PQR",
         title: "Forza: Reclamación por Entrega Incorrecta (Wrong Delivery)",
-        whenToUse: "Aplica cuando el envío aparece como entregado en destino u origen, pero el cliente no reconoce la entrega y manifiesta no haber recibido el paquete.",
-        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno, Evidencia en la que el destinatario manifieste que no recibió (capturas, audios, etc.).",
+        whenToUse: "Cuando el envío aparece como entregado en destino u origen, pero el cliente no reconoce la entrega y manifiesta no haber recibido el paquete.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, Evidencia en la que el destinatario manifieste que no recibió el envío: capturas de pantalla, audios, etc.",
         channel: "Plataforma Envia Case Flow",
-        Guía para presentación de reclamo: "1. Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que
-la empresa entregó el envió, indicando el número de la guía afectada.
-2. Completar la siguiente documentación para el reclamo, en un lapso no
-mayor a 8 días después de dar aviso sobre el reclamo:
- Carta formal del reclamo: la cual debe consignar el número de guía
-afectada, monto a reclamar (precio de costo con IVA) y descripción de
-la mercadería que se reclama.
- Copia de factura o nota de envío correspondiente a la mercadería
-afectada. (en caso de no contar con dicho documento se aceptará una
-certificación extendida por el contador general de su empresa).
- Fotografías del producto afectado."
-        
+        sla: "Tiempo estimado de gestión por Forza: 15 días hábiles.",
         details: `
-          <p style="color:var(--envia-red); font-weight:bold;">¡ATENCIÓN! CANAL EXCLUSIVO DE RECLAMOS FORZA:</p>
-          <p>Los reclamos de Forza NO se envían por WhatsApp. Se deben subir obligatoriamente en la plataforma case flow:</p>
-          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> <i>(El acceso lo otorga Michael Pinto)</i></p>
-          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ver Ejemplo de Reclamo</a></p>
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL DE GESTIÓN:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto)</p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a></p>
+          <div class="section-title">Reglas específicas de Forza</div>
+          <ul>
+            <li><b>Tiempo límite para realizar el reclamo:</b>
+              <ol>
+                <li>Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que la empresa entregó el envío, indicando el número de la guía afectada.</li>
+                <li>Realizar el envío del reclamo, por medio de la página Case Flow, con la evidencia completa, en un lapso no mayor a 8 días después de dar aviso sobre el reclamo.</li>
+              </ol>
+            </li>
+            <li><b>Tiempo estimado de gestión por Forza:</b> 15 días hábiles.</li>
+            <li><b>Requisitos:</b>
+              <ul>
+                <li>Factura comercial u orden de compra.</li>
+                <li>Fotos del empaque externo.</li>
+                <li>Fotos y descripción del contenido interno.</li>
+              </ul>
+            </li>
+          </ul>
           <div class="section-title">Flujo de Atención</div>
           <ul>
-            <li><b>Respond.io / WhatsApp:</b> Validar fecha (< 48 horas) → Solicitar evidencias → Generar ticket por <b>Entrega incorrecta</b> → Subir el caso en <i>Case Flow</i> (máximo 8 días después del incidente)→ Informar al cliente número de ticket y tiempo estimado de 15 días hábiles.</li>
-            <li><b>Ticket:</b> Comprobar plazo. Si falta evidencia cambiar a <b>Incomplete</b>. Con documentación completa, registrar en <i>Case Flow</i>, notificar al cliente el SLA de 15 días hábiles y mantener en <b>In review</b> con seguimiento constante por correo.</li>
+            <li><b>Respond.io / WhatsApp:</b> Identificar el número de guía → Consultar el estado y la trazabilidad → Verificar la fecha de entrega → Comprobar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias necesarias → Generar un ticket por <b>entrega incorrecta</b> → Registrar en el ticket toda la información necesaria → Informar al cliente el número de ticket y el tiempo estimado de gestión de 15 días hábiles.</li>
+            <li><b>Gestión por ticket:</b> Consultar el estado y la trazabilidad → Verificar la fecha de entrega → Comprobar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias necesarias → Si falta información, solicitarla mediante el mismo ticket y cambiar a <b>Incomplete</b> → Cuando esté completa, gestionar el reclamo con Forza → Informar al cliente que la gestión fue realizada → Informar el tiempo estimado de 15 días hábiles → Cambiar a <b>In review</b> mientras se espera la gestión o confirmación correspondiente.</li>
           </ul>
         `
       },
@@ -889,17 +913,35 @@ certificación extendida por el contador general de su empresa).
         category: "Forza",
         type: "Reclamaciones / PQR",
         title: "Forza: Reclamación por Paquete Perdido",
-        whenToUse: "Aplica cuando el cliente reclama por un paquete presuntamente perdido, que no ha sido entregado ni en destino ni en origen.",
-        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo, Fotos y descripción del contenido interno (como referencia para intentar ubicarlo).",
+        whenToUse: "Cuando el cliente reclama por un paquete presuntamente perdido, que no ha sido entregado ni en destino ni en origen.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno, como referencia para intentar ubicarlo.",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para reportar el reclamo: 48 horas desde el incidente o entrega // Tiempo límite para enviar el formulario de reclamo: 8 días desde el incidente o entrega", // Tiempo de respuesta por parte de Forza 
+        sla: "Tiempo estimado de gestión por Forza: 7 a 15 días hábiles.",
         details: `
-          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
-          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (Acceso por Michael Pinto). Ver <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de Reclamo</a></p>
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL DE GESTIÓN:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto)</p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a></p>
+          <div class="section-title">Reglas específicas de Forza</div>
+          <ul>
+            <li><b>Tiempo límite para realizar el reclamo:</b>
+              <ol>
+                <li>Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que la empresa entregó el envío, indicando el número de la guía afectada.</li>
+                <li>Realizar el envío del reclamo, por medio de la página Case Flow, con la evidencia completa, en un lapso no mayor a 8 días después de dar aviso sobre el reclamo.</li>
+              </ol>
+            </li>
+            <li><b>Tiempo estimado de gestión por Forza:</b> 7 a 15 días hábiles.</li>
+            <li><b>Requisitos:</b>
+              <ul>
+                <li>Factura comercial u orden de compra.</li>
+                <li>Fotos del empaque externo.</li>
+                <li>Fotos y descripción del contenido interno.</li>
+              </ul>
+            </li>
+          </ul>
           <div class="section-title">Flujo de Atención</div>
           <ul>
-            <li><b>Respond.io / WhatsApp:</b> Validar último movimiento (< 30 días) → Solicitar evidencias → Generar ticket por <b>Paquete perdido</b> → Subir caso a <i>Case Flow</i> → Informar ticket y SLA de 15 días hábiles al cliente.</li>
-            <li><b>Ticket:</b> Validar info. Si está incompleta pasar a <b>Incomplete</b>. Con info completa, subir a <i>Case Flow</i>, informar al cliente y cambiar ticket a <b>In review</b>. Realizar seguimiento por correo electrónico.</li>
+            <li><b>Respond.io / WhatsApp:</b> Identificar el número de guía → Consultar el estado y la trazabilidad → Verificar la fecha del último movimiento → Comprobar que el reclamo pueda ser presentado dentro del plazo aplicable → Solicitar las evidencias necesarias → Generar un ticket por <b>paquete perdido</b> → Registrar en el ticket toda la información necesaria → Informar al cliente el número de ticket y el tiempo estimado de gestión de 15 días hábiles.</li>
+            <li><b>Gestión por ticket:</b> Consultar el estado y la trazabilidad → Verificar la fecha del último movimiento → Comprobar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias necesarias → Si falta información, solicitarla mediante el mismo ticket y cambiar a <b>Incomplete</b> → Cuando esté completa, gestionar el reclamo con Forza → Informar al cliente que la gestión fue realizada → Informar el tiempo estimado de 15 días hábiles → Cambiar a <b>In review</b> mientras se espera la gestión o confirmación correspondiente.</li>
           </ul>
         `
       },
@@ -908,17 +950,36 @@ certificación extendida por el contador general de su empresa).
         category: "Forza",
         type: "Reclamaciones / PQR",
         title: "Forza: Reclamación por Paquete Robado (Theft)",
-        whenToUse: "Aplica cuando el cliente reclama por un paquete presuntamente robado, que fue entregado en destino u origen de forma incompleta y presenta artículos faltantes.",
-        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno (cómo se despachó y cómo se entregó), Especificación de los productos enviados y cuáles fueron robados.",
+        whenToUse: "Cuando el cliente reclama por un paquete presuntamente robado, que fue entregado en destino u origen de forma incompleta y presenta artículos faltantes.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y contenido interno (como se despachó y como se entregó), Especificación de los productos enviados y cuáles fueron robados.",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo estimado de gestión: 15 días hábiles.",
+        sla: "Tiempo estimado de gestión por Forza: 7 a 15 días hábiles.",
         details: `
-          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
-          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
-          <div class="section-title">Consideraciones de Política Forza</div>
-          <p>La responsabilidad de Forza por pérdida o daño está limitada, salvo que se haya adquirido una protección adicional, y sus términos distinguen entre pérdida/daño directo y pérdidas indirectas (Forza Delivery).</p>
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL DE GESTIÓN:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto)</p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a></p>
+          <div class="section-title">Reglas específicas de Forza</div>
+          <ul>
+            <li><b>Tiempo límite para realizar el reclamo:</b>
+              <ol>
+                <li>Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que la empresa entregó el envío, indicando el número de la guía afectada.</li>
+                <li>Realizar el envío del reclamo, por medio de la página Case Flow, con la evidencia completa, en un lapso no mayor a 8 días después de dar aviso sobre el reclamo.</li>
+              </ol>
+            </li>
+            <li><b>Tiempo estimado de gestión por Forza:</b> 7 a 15 días hábiles.</li>
+            <li><b>Requisitos:</b>
+              <ul>
+                <li>Factura comercial u orden de compra.</li>
+                <li>Fotos del paquete y contenido interno (como se despachó y como se entregó).</li>
+                <li>Especificación de los productos enviados y cuáles fueron robados.</li>
+              </ul>
+            </li>
+          </ul>
           <div class="section-title">Flujo de Atención</div>
-          <p>Solicitar factura, fotos comparativas y detalle de robados. Generar ticket por <b>Paquete robado</b>. Registrar el reclamo en la plataforma <i>Case Flow</i>. Notificar al cliente tiempo estimado de 15 días hábiles y mantener ticket en <b>In review</b> con seguimiento constante por correo.</p>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Identificar el número de guía → Consultar el estado y la trazabilidad → Verificar la fecha de entrega → Comprobar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias necesarias → Generar un ticket por <b>paquete robado</b> → Registrar en el ticket toda la información necesaria para gestionar la reclamación → Informar al cliente el número de ticket y el tiempo estimado de gestión de 15 días hábiles.</li>
+            <li><b>Gestión por ticket:</b> Consultar el estado y la trazabilidad → Verificar la fecha de entrega → Comprobar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias necesarias → Si falta información, solicitarla mediante el mismo ticket y cambiar a <b>Incomplete</b> → Cuando esté completa, gestionar el reclamo con Forza → Informar al cliente que la gestión fue realizada → Informar el tiempo estimado de 15 días hábiles → Cambiar a <b>In review</b> mientras se espera la gestión o confirmación correspondiente.</li>
+          </ul>
         `
       },
       {
@@ -926,20 +987,41 @@ certificación extendida por el contador general de su empresa).
         category: "Forza",
         type: "Reclamaciones / PQR",
         title: "Forza: Reclamación por Paquete Dañado",
-        whenToUse: "Aplica cuando el cliente presenta un reclamo por daños en la mercancía.",
-        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del empaque externo (cómo se despachó y cómo se entregó), Fotos y descripción del contenido interno dañado (cómo se despachó y cómo se entregó), Especificar cuáles productos sufrieron daño.",
+        whenToUse: "Cuando el cliente presenta un reclamo por daños en la mercancía.",
+        requiredInfo: "Número de guía, Factura comercial u orden de compra, Fotos del paquete y del contenido interno dañado, Fotos del paquete y contenido despachado antes del daño, Especificar cuáles productos sufrieron daño.",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para realizar el reclamo: 30 días calendario. Tiempo de revisión del reclamo: 15 días hábiles.",
+        sla: "Tiempo estimado de gestión por Forza: 7 a 15 días hábiles.",
         details: `
-          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
-          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
-          <div class="section-title">Condiciones de Embalaje y Cobertura</div>
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL DE GESTIÓN:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto)</p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a></p>
+          <div class="section-title">Validaciones iniciales</div>
           <ul>
-            <li>Verificar que las condiciones del envío cumplen regulaciones de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a></li>
-            <li><b>Restricción:</b> <b>No aplica para daños en embalaje exterior</b>, solo para productos internos.</li>
+            <li>Verificar que las condiciones del envío cumplen las regulaciones de embalaje: <a href="https://help.envia.com/guia-de-embalaje/" target="_blank" class="link-btn">Guía de Embalaje</a>.</li>
+            <li><b>No aplica para daños en embalaje, solo productos internos.</b></li>
+          </ul>
+          <div class="section-title">Reglas específicas de Forza</div>
+          <ul>
+            <li><b>Tiempo límite para realizar el reclamo:</b>
+              <ol>
+                <li>Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que la empresa entregó el envío, indicando el número de la guía afectada.</li>
+                <li>Realizar el envío del reclamo, por medio de la página Case Flow, con la evidencia completa, en un lapso no mayor a 8 días después de dar aviso sobre el reclamo.</li>
+              </ol>
+            </li>
+            <li><b>Tiempo estimado de gestión por Forza:</b> 7 a 15 días hábiles.</li>
+            <li><b>Requisitos:</b>
+              <ul>
+                <li>Factura comercial u orden de compra.</li>
+                <li>Fotos del empaque externo (cómo se despachó y cómo se entregó).</li>
+                <li>Fotos y descripción del contenido interno (cómo se despachó y cómo se entregó).</li>
+              </ul>
+            </li>
           </ul>
           <div class="section-title">Flujo de Atención</div>
-          <p>Recopilar evidencias antes/después. Generar ticket por <b>Paquete dañado</b>. Subir el reclamo a la plataforma <i>Case Flow</i>. Informar SLA de 15 días hábiles y cambiar ticket a <b>In review</b> realizando seguimiento por correo.</p>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Identificar el número de guía → Revisar la trazabilidad → Revisar la fecha de entrega → Verificar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias del daño → Generar un ticket por <b>paquete dañado</b> → Registrar en el ticket toda la información necesaria → Informar al cliente el número de ticket y el tiempo estimado de gestión de 15 días hábiles.</li>
+            <li><b>Gestión por ticket:</b> Identificar el número de guía → Revisar la trazabilidad → Revisar la fecha de entrega → Verificar que el reclamo esté dentro del plazo aplicable → Solicitar las evidencias del daño → Si falta información, solicitarla mediante el mismo ticket y cambiar a <b>Incomplete</b> → Cuando esté completa, gestionar el reclamo con Forza → Informar al cliente que la gestión fue realizada → Informar el tiempo estimado de 15 días hábiles → Cambiar a <b>In review</b> mientras se espera la gestión o confirmación correspondiente.</li>
+          </ul>
         `
       },
       {
@@ -947,25 +1029,39 @@ certificación extendida por el contador general de su empresa).
         category: "Forza",
         type: "Reclamaciones / PQR",
         title: "Forza: Reclamación por Cobro por Sobrepeso",
-        whenToUse: "Aplica cuando el cliente presenta un reclamo por un ajuste de cobro por sobrepeso.",
-        requiredInfo: "Número de guía, Foto del paquete sobre báscula (peso visible), Foto del paquete con cinta métrica (alto x ancho x largo visible).",
+        whenToUse: "Cuando el cliente presenta un reclamo por un ajuste de cobro por sobrepeso.",
+        requiredInfo: "Número de guía, Foto del paquete donde se evidencie el peso sobre una báscula, Foto del paquete donde se evidencien las dimensiones: alto × ancho × largo, medidas con cinta métrica.",
         channel: "Plataforma Envia Case Flow",
-        sla: "Plazo límite para realizar el reclamo: 30 días desde el ajuste. Tiempo estimado de gestión: No definido.",
+        sla: "Tiempo estimado de gestión por Forza: 7 a 15 días hábiles.",
         details: `
-          <p style="color:var(--envia-red); font-weight:bold;">CANAL OBLIGATORIO DE RECLAMACIÓN FORZA:</p>
-          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> | <a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo Reclamo</a></p>
-          <div class="section-title">Regla de Validación de Medidas</div>
+          <p style="color:var(--envia-red); font-weight:bold;">CANAL DE GESTIÓN:</p>
+          <p><a href="https://envia-case-flow.vercel.app/login" target="_blank" class="link-btn">Plataforma Envia Case Flow</a> (acceso lo otorga Michael Pinto)</p>
+          <p><a href="https://drive.google.com/file/d/1hB-_86GRQHmlkpARWepJQWz41H8fc1CQ/view?usp=sharing" target="_blank" class="link-btn">Ejemplo de reclamo</a></p>
+          <div class="section-title">Reglas específicas de Forza</div>
           <ul>
-            <li>Confirmar existencia de ajuste por sobrepeso en la guía y verificar fecha (< 30 días).</li>
-            <li>Comparar peso y dimensiones con los datos declarados en la guía:
-              <ul>
-                <li><b>Si las dimensiones son mayores a las registradas en la guía:</b> Se RECHAZA la solicitud al cliente.</li>
-                <li><b>Si las dimensiones son iguales o inferiores:</b> Se avanza con el reclamo.</li>
-              </ul>
+            <li><b>Tiempo límite para realizar el reclamo:</b>
+              <ol>
+                <li>Enviar aviso en un lapso no mayor a 48 horas a partir de la fecha en que la empresa entregó el envío, indicando el número de la guía afectada.</li>
+                <li>Realizar el envío del reclamo, por medio de la página Case Flow, con la evidencia completa, en un lapso no mayor a 8 días después de dar aviso sobre el reclamo.</li>
+              </ol>
             </li>
+            <li><b>Tiempo estimado de gestión por Forza:</b> 7 a 15 días hábiles.</li>
+            <li><b>Requisitos:</b> evidencias anteriormente especificadas.</li>
+          </ul>
+          <div class="section-title">Validación de medidas</div>
+          <ul>
+            <li>Confirmar que exista un ajuste por sobrepeso asociado a la guía.</li>
+            <li>Verificar la fecha del cobro por sobrepeso.</li>
+            <li>Comprobar que el reclamo esté dentro del plazo aplicable.</li>
+            <li>Comparar el peso y las dimensiones de las evidencias con los datos declarados en la guía.</li>
+            <li><b>Si las dimensiones son mayores a las registradas:</b> se rechaza la solicitud.</li>
+            <li><b>Si las dimensiones son iguales o inferiores:</b> se avanza con el reclamo.</li>
           </ul>
           <div class="section-title">Flujo de Atención</div>
-          <p>Generar ticket por <b>Sobrepeso</b>. Cuando la información esté completa, subir la reclamación a la plataforma <i>Case Flow</i>. Informar al cliente que la gestión fue realizada y cambiar ticket a <b>In review</b>.</p>
+          <ul>
+            <li><b>Respond.io / WhatsApp:</b> Identificar el número de guía → Confirmar ajuste por sobrepeso → Verificar fecha del cobro → Comprobar plazo → Solicitar evidencias → Comparar peso y dimensiones → Si las dimensiones son mayores, rechazar la solicitud; si son iguales o inferiores, avanzar → Generar ticket por <b>sobrepeso</b> → Registrar la información necesaria → Informar al cliente el número de ticket y el tiempo estimado de gestión.</li>
+            <li><b>Gestión por ticket:</b> Confirmar ajuste → Verificar fecha → Comprobar plazo → Solicitar evidencias → Comparar peso y dimensiones → Si las dimensiones son mayores, rechazar; si son iguales o inferiores, avanzar → Si falta información, solicitarla mediante el mismo ticket y cambiar a <b>Incomplete</b> → Cuando esté completa, gestionar el reclamo según las reglas de Forza → Informar al cliente que la gestión fue realizada → Informar el tiempo estimado → Cambiar a <b>In review</b> mientras se espera la gestión o confirmación correspondiente.</li>
+          </ul>
         `
       },
       {
